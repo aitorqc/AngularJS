@@ -1,0 +1,79 @@
+<!doctype html>
+<html ng-app="phonecatApp">
+
+<body>
+    <div id="services" ng-controller="controllerA">
+        <h1>{{welcome}}</h1>
+        <h2>{{time}}</h2>
+    </div>
+
+    <div>
+        <label>Color1</label>
+        <input type="color" style="background-color: {{col}}" ng-model="col">
+        <p>{{col}}</p>
+    </div>
+
+    <div>
+        <label>Color2</label>
+        <!--adaptar el valor-->
+        <input type="text" style="background-color: {{col2}}" ng-model="col2" value="">
+        <p ng-bind="col2"></p>
+    </div>
+
+    <div>
+        <input type="text" ng-model="name">
+        <p ng-bind="name"></p>
+        <p>{{name}}</p>
+    </div>
+
+    <div ng-init="person={name:'John', last: 'Doe'}">
+        <label>{{person.name}}</label>
+        <label ng-bind="person.last"></label>
+    </div>
+
+    <div id="dynamic_phones" ng-controller="PhoneListController" style="color: {{col}}">
+        <dl ng-repeat="phone in phones | orderBy:'name'">
+            <h4>{{phones.indexOf(phone)+1}}</h4>
+            <dt>{{phone.name}}</dt>
+            <dd>{{phone.snippet}}</dd>
+        </dl>
+    </div>
+
+    <div id="dynamic_names" ng-controller="PhoneListController" style="color: {{col2}}">
+        <ol>
+            <li ng-repeat="name in names | filter: 'a'">{{name}}</li>
+            <li>{{names[1]}}</li>
+        </ol>
+    </div>
+
+    <div id="dynamic_table" ng-controller="PhoneListController">
+        <table>
+            <th colspan="2">Elements</th>
+            <tr>
+                <td>A</td>
+                <td>B</td>
+            </tr>
+            <tr ng-repeat="i in ['A',1,2,3,4,5,'Z'] | lowercase">
+                <td>{{i}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="directives" ng-app="PhoneListController">
+        <etiqueta-h></etiqueta-h>
+    </div>
+
+    <div id="filter_prices" ng-controller="PhoneListController">
+        <li ng-repeat="price in prices">{{price | myFilter}}</li>
+    </div>
+
+    <div id="own_services" ng-controller="controllerA">
+        <h4>{{hex}}</h4>
+    </div>
+
+    <script src="http://code.angularjs.org/snapshot/angular.js"></script>
+    <script src="app.js"></script>
+
+</body>
+
+</html>
