@@ -69,6 +69,9 @@
 
     <div id="own_services" ng-controller="controllerA">
         <h4>{{hex}}</h4>
+        <ul>
+            <li ng-repeat="x in myData">{{x.Name+' '+x.Country}}</li>
+        </ul>
     </div>
 
     <script src="http://code.angularjs.org/snapshot/angular.js"></script>

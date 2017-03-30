@@ -74,4 +74,7 @@ phonecatApp.controller('controllerA', function ($scope, $http, $interval, hexafy
     $scope.time = new Date().toLocaleTimeString();
   }, 500);
   $scope.hex=hexafy.myFunc(250);
+  $http.get("datos.js").then(function(response){
+    $scope.myData = response.data.records;
+  });
 });
