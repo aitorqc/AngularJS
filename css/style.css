@@ -2,3 +2,11 @@ body{
     display: flex;
     justify-content: space-between;
 }
+
+#validations{
+    display: inline-block;
+}
+
+#color_Val.ng-invalid{
+    background-color: firebrick;
+}
