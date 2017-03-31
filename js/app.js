@@ -59,10 +59,10 @@ phonecatApp.filter('myFilter', function () {
 });
 
 // own service
-phonecatApp.service('hexafy', function() {
-    this.myFunc = function (x) {
-        return x.toString(16);
-    }
+phonecatApp.service('hexafy', function () {
+  this.myFunc = function (x) {
+    return x.toString(16);
+  }
 });
 
 phonecatApp.controller('controllerA', function ($scope, $http, $interval, hexafy) {
@@ -70,11 +70,24 @@ phonecatApp.controller('controllerA', function ($scope, $http, $interval, hexafy
   $http.get("welcome.html").then(function (response) {
     $scope.welcome = response.data;
   });
-  $interval(function(){
+  $interval(function () {
     $scope.time = new Date().toLocaleTimeString();
   }, 500);
-  $scope.hex=hexafy.myFunc(250);
-  $http.get("datos.js").then(function(response){
-    $scope.myData = response.data.records;
+  $scope.hex = hexafy.myFunc(250);
+  $http.get("js/datos.js").then(function (response) {
+    $scope.myData = response.data.employees;
   });
+});
+
+phonecatApp.controller('controllerB', function ($scope, $http) {
+  $scope.casos = ["1", "2", "3", "4", "5"];
+  $http.get("js/datos.js").then(function (response) {
+    $scope.datos = response.data.employees;
+  });
+  $scope.count = 0;
+  $scope.alph = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+  $scope.myFunc = function (evt) {
+    $scope.x = evt.clientX;
+    $scope.y = evt.clientY;
+  }
 });
